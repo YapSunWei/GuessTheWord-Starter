@@ -46,17 +46,16 @@ class GameViewModel : ViewModel() {
         nextWord()
         Log.i("GameViewModel", "GameViewModel created!")
     }
+
     /**
-     * Moves to the next word in the list
+     * Callback called when the ViewModel is destroyed
      */
-    private fun nextWord() {
-        if (!wordList.isEmpty()) {
-            //Select and remove a word from the list
-            word = wordList.removeAt(0)
-        }
-        updateWordText()
-        updateScoreText()
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("GameViewModel", "GameViewModel destroyed!")
     }
+
+
     /** Methods for buttons presses **/
     fun onSkip() {
         score--
@@ -68,8 +67,16 @@ class GameViewModel : ViewModel() {
         nextWord()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("GameViewModel", "GameViewModel destroyed!")
+    /**
+     * Moves to the next word in the list
+     */
+    private fun nextWord() {
+        if (!wordList.isEmpty()) {
+            //Select and remove a word from the list
+            word = wordList.removeAt(0)
+        }
+
     }
+
+
 }
